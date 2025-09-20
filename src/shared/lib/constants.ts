@@ -18,7 +18,7 @@ export const SITE_CONFIG = {
     github: 'https://github.com/summercat01',
     twitter: 'https://twitter.com/summercat',
     linkedin: 'https://linkedin.com/in/summercat',
-    email: 'hello@summercat.dev'
+    email: 'jumokcom2001@gmail.com'
   }
 } as const
 

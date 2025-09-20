@@ -28,11 +28,11 @@ export default function PortfolioFooter() {
 
             {/* 이메일 링크 */}
             <Link 
-              href="mailto:summercat@example.com"
+              href="mailto:jumokcom2001@gmail.com"
               className="flex items-center space-x-2 hover:text-portfolio-primary transition-colors"
             >
               <Mail className="h-4 w-4" />
-              <span>summercat@example.com</span>
+              <span>jumokcom2001@gmail.com</span>
             </Link>
           </div>
         </div>

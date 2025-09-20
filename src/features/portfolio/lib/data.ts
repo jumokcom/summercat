@@ -10,7 +10,7 @@ export const portfolioConfig = {
   name: 'Summer Cat',
   title: '웹 개발자',
   description: '기획부터 배포까지, 웹 개발의 모든 과정을 책임집니다',
-  email: 'summercat@example.com',
+  email: 'jumokcom2001@gmail.com',
   github: 'https://github.com/summercat01',
   linkedIn: '',
 }
