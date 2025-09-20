@@ -1,10 +1,10 @@
 # Summer Cat World
 
-웹 기술을 탐구하는 인터랙티브한 실험실입니다.
+여름고양이의 웹 사이트 세상입니다.
 
 ## 🎮 프로젝트 개요
 
-포켓몬 DP 스타일의 2D 탑뷰 인터랙티브 허브를 통해 다양한 웹 사이트와 서비스를 탐험할 수 있는 플랫폼입니다.
+도트 스타일의의 2D 탑뷰 인터랙티브 허브를 통해 다양한 웹 사이트와 서비스를 탐험할 수 있는 플랫폼입니다.
 
 ## 🏗️ 아키텍처
 
@@ -63,7 +63,7 @@ npm run build
 ## 🎮 주요 기능
 
 ### 1. 인터랙티브 허브 (`/`)
-- 포켓몬 DP 스타일 2D 탑뷰 게임
+- 도트 스타일 2D 탑뷰 게임
 - WASD/화살표키로 캐릭터 이동
 - 건물 상호작용으로 각 사이트 접근
 - 부드러운 애니메이션과 반응형 디자인
@@ -74,10 +74,10 @@ npm run build
 - 다크/라이트 테마 지원
 
 ### 3. Web2 Labs (`/web2`) - 준비중
-- 전통적인 웹 기술 실험공간
+- 웹2
 
 ### 4. Web3 Tower (`/web3`) - 준비중  
-- 블록체인 및 분산 웹 기술 연구
+- 웹3
 
 ## 📦 Import 경로
 
@@ -114,12 +114,7 @@ import { HeroSection, ProjectsSummary } from '@/features/portfolio'
 
 ## 🚀 배포
 
-Vercel을 통한 자동 배포 설정:
-
-```bash
-# Vercel CLI로 배포
-npx vercel --prod
-```
+Vercel을 통한 자동 배포 설정
 
 ## 📄 라이선스
 
@@ -127,5 +122,5 @@ MIT License - 자유롭게 사용, 수정, 배포 가능
 
 ---
 
-**개발자**: Summer Cat ([@summercat01](https://github.com/summercat01))  
+**개발자**: SummerCat ([@summercat01](https://github.com/summercat01))  
 **이메일**: jumokcom2001@gmail.com
