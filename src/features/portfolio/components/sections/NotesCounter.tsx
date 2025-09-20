@@ -1,16 +1,16 @@
 'use client'
 
-import { Card, CardContent } from '@/shared/components/ui/card'
-import { Button } from '@/shared/components/ui/button'
-import { Badge } from '@/shared/components/ui/badge'
-import { 
-  FileText, 
-  ArrowRight, 
-  Calendar,
-  Tag,
-  TrendingUp
-} from 'lucide-react'
-import Link from 'next/link'
+// import { Card, CardContent } from '@/shared/components/ui/card'
+// import { Button } from '@/shared/components/ui/button'
+// import { Badge } from '@/shared/components/ui/badge'
+// import { 
+//   FileText, 
+//   ArrowRight, 
+//   Calendar,
+//   Tag,
+//   TrendingUp
+// } from 'lucide-react'
+// import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
@@ -27,7 +27,7 @@ const techTags = [
 ]
 
 export default function NotesCounter() {
-  const [displayCount, setDisplayCount] = useState(0)
+  // const [displayCount, setDisplayCount] = useState(0)
   const [tagPositions, setTagPositions] = useState<{ x: number; y: number }[]>([])
   const [isClient, setIsClient] = useState(false)
 
@@ -36,7 +36,7 @@ export default function NotesCounter() {
     setIsClient(true)
     
     // 동적 워드클라우드 배치 함수
-    const generateWordCloudPositions = (tags: any[]) => {
+    const generateWordCloudPositions = (tags: { count: number }[]) => {
       const positions: { x: number; y: number }[] = []
       const usedPositions = new Set<string>()
       
@@ -82,7 +82,7 @@ export default function NotesCounter() {
   }, [])
 
   // 총 태그 수 계산
-  const totalTagCount = techTags.reduce((sum, tag) => sum + tag.count, 0)
+  // const totalTagCount = techTags.reduce((sum, tag) => sum + tag.count, 0)
 
   return (
     <motion.div 

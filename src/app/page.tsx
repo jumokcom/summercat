@@ -42,7 +42,7 @@ export default function Home() {
   // 건물 데이터 생성 (메모이제이션)
   const buildings = useMemo(() => {
     return createBuildings(screenSize, setShowSettings)
-  }, [screenSize.width, screenSize.height])
+  }, [screenSize, setShowSettings])
 
   // 키보드 입력 처리
   useKeyboardInput({

@@ -15,7 +15,7 @@ export const usePlayerMovement = (
     
     setPlayerDirection(direction)
     setPlayerPos(prev => {
-      let newPos = { ...prev }
+      const newPos = { ...prev }
       
       switch(direction) {
         case 'up':

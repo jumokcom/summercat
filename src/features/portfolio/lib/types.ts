@@ -40,7 +40,7 @@ export interface Experience {
   description: string
   impact: string
   skills: string[]
-  icon: any // Lucide icon component
+  icon: React.ComponentType<{ className?: string }> // Lucide icon component
   color: string
 }
 
@@ -55,7 +55,7 @@ export interface Keyword {
   id: number
   keyword: string
   description: string
-  icon: any // Lucide icon component
+  icon: React.ComponentType<{ className?: string }> // Lucide icon component
   color: string
   bgGradient: string
 }

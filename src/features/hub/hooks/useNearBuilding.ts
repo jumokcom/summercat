@@ -31,5 +31,5 @@ export const useNearBuilding = (
       setNearBuilding(newNearBuilding)
       lastNearBuildingRef.current = newNearBuilding
     }
-  }, [playerPos.x, playerPos.y, gameStarted])
+  }, [playerPos.x, playerPos.y, gameStarted, buildings, setNearBuilding])
 }

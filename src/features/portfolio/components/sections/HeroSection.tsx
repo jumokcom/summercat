@@ -80,7 +80,7 @@ export default function HeroSection() {
             { step: '02', title: '디자인', desc: 'UI/UX 설계', color: 'text-green-600 dark:text-green-400' },
             { step: '03', title: '개발', desc: '빠른 구현', color: 'text-orange-600 dark:text-orange-400' },
             { step: '04', title: '배포', desc: '서비스 런칭', color: 'text-purple-600 dark:text-purple-400' },
-          ].map((item, index) => (
+          ].map((item) => (
             <motion.div 
               key={item.step}
               className="text-center"

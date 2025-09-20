@@ -35,6 +35,6 @@ export interface SmartContract {
   name: string
   address: string
   blockchain: string
-  abi?: any[]
+  abi?: unknown[]
   functions: string[]
 }

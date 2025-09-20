@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import { Github, Mail } from 'lucide-react'
-import { Button } from '@/shared/components/ui/button'
-import { Separator } from '@/shared/components/ui/separator'
 
 export default function PortfolioFooter() {
   const currentYear = new Date().getFullYear()
