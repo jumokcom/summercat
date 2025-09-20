@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
   name: 'SummerCat',
   title: 'SummerCat - Portfolio & Web Development',
   description: 'Full-stack developer specializing in modern web technologies',
-  url: 'https://summercat.dev',
+  url: 'https://summercat.vercel.app',
   author: 'SummerCat',
   keywords: ['portfolio', 'web development', 'react', 'nextjs', 'typescript'],
   social: {
