@@ -85,7 +85,7 @@ export type Theme = 'light' | 'dark' | 'system'
 export type Status = 'idle' | 'loading' | 'success' | 'error'
 
 // API 응답 타입
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   data: T
   message: string
   success: boolean
