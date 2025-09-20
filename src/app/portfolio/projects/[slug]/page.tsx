@@ -8,12 +8,6 @@
 
 import { notFound } from 'next/navigation'
 
-interface ProjectDetailPageProps {
-  params: {
-    slug: string
-  }
-}
-
 export default function ProjectDetailPage() {
   // 임시로 404 페이지 반환 (나중에 실제 프로젝트 데이터로 구현)
   notFound()
