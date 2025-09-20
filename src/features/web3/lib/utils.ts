@@ -38,9 +38,9 @@ export const searchWeb3Projects = (query: string): Web3Project[] => {
 export const getWeb3Stats = () => {
   return {
     totalProjects: plannedWeb3Projects.length,
-    completedProjects: plannedWeb3Projects.filter(p => p.status === 'completed').length,
-    inProgressProjects: plannedWeb3Projects.filter(p => p.status === 'in-progress').length,
-    plannedProjects: plannedWeb3Projects.filter(p => p.status === 'planned').length,
+    completedProjects: 0, // 현재 완료된 프로젝트 없음
+    inProgressProjects: 0, // 현재 진행 중인 프로젝트 없음
+    plannedProjects: plannedWeb3Projects.length, // 모든 프로젝트가 계획 단계
     supportedChains: supportedBlockchains.length,
     defiProjects: plannedWeb3Projects.filter(p => p.category === 'defi').length,
     nftProjects: plannedWeb3Projects.filter(p => p.category === 'nft').length
