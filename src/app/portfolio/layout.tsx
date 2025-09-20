@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { PortfolioHeader } from '@/features/portfolio'
-import { ThemeProvider } from '@/shared/components/providers/theme-provider'
+import { ForceThemeProvider } from '@/shared/components/providers/force-theme-provider'
 
 export const metadata: Metadata = {
   title: 'Summer Cat | 포트폴리오',
@@ -23,10 +23,10 @@ export default function PortfolioLayout({
   children: React.ReactNode
 }) {
   return (
-    <ThemeProvider
+    <ForceThemeProvider
       attribute="class"
-      defaultTheme="dark"
-      enableSystem={true}
+      forceTheme="dark"
+      enableSystem={false}
       disableTransitionOnChange
     >
       <div className="min-h-screen">
@@ -35,6 +35,6 @@ export default function PortfolioLayout({
           {children}
         </main>
       </div>
-    </ThemeProvider>
+    </ForceThemeProvider>
   )
 }
