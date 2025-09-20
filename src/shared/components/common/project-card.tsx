@@ -8,25 +8,21 @@
 // - 재사용 가능한 컴포넌트
 
 import React from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
-import { Badge } from './ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { Badge } from '../ui/badge'
 
 interface ProjectCardProps {
   title: string
   description: string
   tags: string[]
   status?: 'completed' | 'in-progress' | 'planned'
-  githubUrl?: string
-  liveUrl?: string
 }
 
 export default function ProjectCard({ 
   title, 
   description, 
   tags, 
-  status = 'planned',
-  githubUrl,
-  liveUrl 
+  status = 'planned'
 }: ProjectCardProps) {
   return (
     <Card className="h-full hover:shadow-lg transition-shadow">
