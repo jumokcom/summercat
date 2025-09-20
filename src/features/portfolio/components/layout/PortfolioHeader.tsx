@@ -18,7 +18,7 @@ const navigation = [
 export default function PortfolioHeader() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { setTheme } = useTheme()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60">
@@ -53,37 +53,29 @@ export default function PortfolioHeader() {
               ))}
             </nav>
             
-            {/* 테마 전환 버튼 */}
+            {/* 테마 전환 버튼 - 포트폴리오에서는 다크모드 고정 */}
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+              onClick={() => setTheme('light')}
+              className="text-gray-300 hover:text-blue-400 hover:bg-gray-700"
             >
-              {theme === 'light' ? (
-                <Moon className="h-4 w-4" />
-              ) : (
-                <Sun className="h-4 w-4" />
-              )}
-              <span className="sr-only">테마 전환</span>
+              <Sun className="h-4 w-4" />
+              <span className="sr-only">라이트모드로 전환</span>
             </Button>
           </div>
 
           {/* 모바일 메뉴 버튼들 */}
           <div className="md:hidden flex items-center space-x-2">
-            {/* 테마 전환 버튼 */}
+            {/* 테마 전환 버튼 - 포트폴리오에서는 다크모드 고정 */}
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+              onClick={() => setTheme('light')}
+              className="text-gray-300 hover:text-blue-400 hover:bg-gray-700"
             >
-              {theme === 'light' ? (
-                <Moon className="h-4 w-4" />
-              ) : (
-                <Sun className="h-4 w-4" />
-              )}
-              <span className="sr-only">테마 전환</span>
+              <Sun className="h-4 w-4" />
+              <span className="sr-only">라이트모드로 전환</span>
             </Button>
             
             {/* 햄버거 메뉴 버튼 */}
