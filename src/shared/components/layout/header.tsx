@@ -6,6 +6,7 @@
 // - 반응형 디자인
 
 import React from 'react'
+import Link from 'next/link'
 
 export default function Header() {
   return (
@@ -16,12 +17,12 @@ export default function Header() {
             Summer Cat World
           </div>
           <nav className="hidden md:flex space-x-6">
-            <a href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <Link href="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
               Home
-            </a>
-            <a href="/portfolio" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            </Link>
+            <Link href="/portfolio" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
               Portfolio
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
