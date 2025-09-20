@@ -4,8 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { Button } from '@/shared/components/ui/button'
-import { Menu, X, Moon, Sun } from 'lucide-react'
-import { useTheme } from 'next-themes'
+import { Menu, X } from 'lucide-react'
 
 const navigation = [
   { name: 'Main', href: '/portfolio' },
@@ -18,7 +17,6 @@ const navigation = [
 export default function PortfolioHeader() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { setTheme } = useTheme()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60">
@@ -53,30 +51,10 @@ export default function PortfolioHeader() {
               ))}
             </nav>
             
-            {/* 테마 전환 버튼 - 포트폴리오에서는 다크모드 고정 */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme('light')}
-              className="text-gray-300 hover:text-blue-400 hover:bg-gray-700"
-            >
-              <Sun className="h-4 w-4" />
-              <span className="sr-only">라이트모드로 전환</span>
-            </Button>
           </div>
 
           {/* 모바일 메뉴 버튼들 */}
           <div className="md:hidden flex items-center space-x-2">
-            {/* 테마 전환 버튼 - 포트폴리오에서는 다크모드 고정 */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme('light')}
-              className="text-gray-300 hover:text-blue-400 hover:bg-gray-700"
-            >
-              <Sun className="h-4 w-4" />
-              <span className="sr-only">라이트모드로 전환</span>
-            </Button>
             
             {/* 햄버거 메뉴 버튼 */}
             <Button
