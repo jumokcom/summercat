@@ -39,9 +39,9 @@ export const searchProjects = (query: string): Web2Project[] => {
 export const getWeb2Stats = () => {
   return {
     totalProjects: plannedProjects.length,
-    completedProjects: plannedProjects.filter(p => p.status === 'completed').length,
-    inProgressProjects: plannedProjects.filter(p => p.status === 'in-progress').length,
-    plannedProjects: plannedProjects.filter(p => p.status === 'planned').length,
+    completedProjects: 0, // 현재 완료된 프로젝트 없음
+    inProgressProjects: 0, // 현재 진행 중인 프로젝트 없음
+    plannedProjects: plannedProjects.length, // 모든 프로젝트가 계획 단계
     totalTechnologies: web2Technologies.length
   }
 }

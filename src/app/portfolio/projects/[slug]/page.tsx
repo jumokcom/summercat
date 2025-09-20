@@ -14,7 +14,7 @@ interface ProjectDetailPageProps {
   }
 }
 
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+export default function ProjectDetailPage({ params: _params }: ProjectDetailPageProps) {
   // 임시로 404 페이지 반환 (나중에 실제 프로젝트 데이터로 구현)
   notFound()
 }
