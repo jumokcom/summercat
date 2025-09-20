@@ -17,7 +17,7 @@ export default function PortfolioFooter() {
           <div className="flex items-center space-x-6 text-sm text-portfolio-400">
             {/* GitHub 링크 */}
             <Link 
-              href="https://github.com/summercat" 
+              href="https://github.com/summercat01" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center space-x-2 hover:text-portfolio-primary transition-colors"

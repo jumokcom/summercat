@@ -127,5 +127,5 @@ MIT License - 자유롭게 사용, 수정, 배포 가능
 
 ---
 
-**개발자**: Summer Cat ([@summercat](https://github.com/summercat))  
+**개발자**: Summer Cat ([@summercat01](https://github.com/summercat01))  
 **이메일**: summercat@example.com
