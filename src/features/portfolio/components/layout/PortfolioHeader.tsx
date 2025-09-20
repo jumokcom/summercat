@@ -29,7 +29,7 @@ export default function PortfolioHeader() {
             </Link>
             <span className="text-gray-600 dark:text-gray-300">|</span>
             <Link href="/portfolio" className="text-xl font-bold text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-300 transition-colors">
-              포트폴리오
+              Portfolio
             </Link>
           </div>
 
