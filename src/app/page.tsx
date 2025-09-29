@@ -1,99 +1,63 @@
-'use client'
-
-import { useMemo } from 'react'
 import {
-  useGameState,
-  usePlayerMovement,
-  useKeyboardInput,
-  useNearBuilding,
-  createBuildings,
-  StartScreen,
-  GameWorld,
-  GameUI,
-  SettingsModal
-} from '@/features/hub'
+  PortfolioHeader,
+  HeroSection,
+  ProjectsSummary,
+  WorkFlow,
+  ExperiencesSummary,
+  KeywordsSection,
+  NotesCounter,
+  SectionNavigation,
+  PortfolioFooter
+} from '@/components/portfolio'
 
-export default function Home() {
-  // 게임 상태 관리
-  const {
-    gameStarted,
-    setGameStarted,
-    playerPos,
-    setPlayerPos,
-    nearBuilding,
-    setNearBuilding,
-    showSettings,
-    setShowSettings,
-    playerDirection,
-    setPlayerDirection,
-    screenSize,
-    isDarkMode
-  } = useGameState()
-
-  // 플레이어 이동 로직
-  const {
-    keysPressed,
-    setKeysPressed,
-    startContinuousMove,
-    stopContinuousMove,
-    getActiveDirection
-  } = usePlayerMovement(screenSize, setPlayerPos, setPlayerDirection)
-
-  // 건물 데이터 생성 (메모이제이션)
-  const buildings = useMemo(() => {
-    return createBuildings(screenSize, setShowSettings)
-  }, [screenSize, setShowSettings])
-
-  // 키보드 입력 처리
-  useKeyboardInput({
-    gameStarted,
-    setGameStarted,
-    keysPressed,
-    setKeysPressed,
-    startContinuousMove,
-    stopContinuousMove,
-    getActiveDirection,
-    nearBuilding
-  })
-
-  // 근처 건물 확인
-  useNearBuilding(playerPos, buildings, gameStarted, setNearBuilding)
-
-  // 테마별 배경 그라데이션
-  const getBackgroundGradient = () => {
-    if (isDarkMode) {
-      return "bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900"
-    } else {
-      return "bg-gradient-to-br from-green-400 via-blue-400 to-purple-500"
-    }
-  }
-
+export default function HomePage() {
   return (
-    <div className={`min-h-screen ${getBackgroundGradient()} relative overflow-hidden`}>
-      {/* 게임이 시작되지 않은 상태 */}
-      {!gameStarted && (
-        <StartScreen onStart={() => setGameStarted(true)} />
-      )}
+    <div className="min-h-screen bg-portfolio-900 text-white">
+      <PortfolioHeader />
 
-      {/* 게임 월드 */}
-      {gameStarted && (
-        <>
-          <GameWorld
-            playerPos={playerPos}
-            playerDirection={playerDirection}
-            buildings={buildings}
-            nearBuilding={nearBuilding}
-            isDarkMode={isDarkMode}
-          />
-          <GameUI isDarkMode={isDarkMode} />
-        </>
-      )}
+      <main className="space-y-0">
+        <section id="hero" className="h-screen flex items-center justify-center bg-gradient-to-br from-portfolio-900 to-portfolio-800">
+          <HeroSection />
+        </section>
 
-      {/* 설정 모달 */}
-      <SettingsModal 
-        showSettings={showSettings} 
-        onClose={() => setShowSettings(false)} 
-      />
+        <section id="projects" className="h-screen flex items-center justify-center bg-white/5 backdrop-blur-sm border border-white/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <ProjectsSummary />
+          </div>
+        </section>
+
+        <section id="work-flow" className="h-screen flex items-center justify-center bg-white/5 backdrop-blur-sm border border-white/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <WorkFlow />
+          </div>
+        </section>
+
+        <section id="experiences" className="h-screen flex items-center justify-center bg-white/5 backdrop-blur-sm border border-white/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <ExperiencesSummary />
+          </div>
+        </section>
+
+        <section id="keywords" className="h-screen flex items-center justify-center bg-white/5 backdrop-blur-sm border border-white/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <KeywordsSection />
+          </div>
+        </section>
+
+        <section id="notes" className="h-screen flex flex-col bg-white/5 backdrop-blur-sm border border-white/10">
+          <div className="flex-1 flex items-center justify-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <NotesCounter />
+            </div>
+          </div>
+
+          <div className="flex-shrink-0">
+            <PortfolioFooter />
+          </div>
+        </section>
+      </main>
+
+      <SectionNavigation />
     </div>
   )
 }
