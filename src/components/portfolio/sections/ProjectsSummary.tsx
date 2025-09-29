@@ -1,45 +1,13 @@
 'use client'
 
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ExternalLink, Github, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-
-// 임시 데이터 - 나중에 lib/data.ts에서 가져올 예정
-const featuredProjects = [
-  {
-    id: 1,
-    title: 'E-Commerce Platform',
-    description: '기획부터 배포까지 완성한 전자상거래 플랫폼. 사용자 경험을 중심으로 설계하고 현대적인 기술로 구현했습니다.',
-    tags: ['Next.js', 'TypeScript', 'Supabase', 'Stripe'],
-    image: '/images/project1.jpg',
-    liveUrl: 'https://ecommerce-demo.vercel.app',
-    githubUrl: 'https://github.com/username/ecommerce',
-    role: '기획, 디자인, 개발, 배포'
-  },
-  {
-    id: 2,
-    title: '실시간 협업 도구',
-    description: '팀 프로젝트를 위한 실시간 협업 플랫폼. WebSocket을 활용한 실시간 통신과 직관적인 UI로 팀워크를 향상시킵니다.',
-    tags: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-    image: '/images/project2.jpg',
-    liveUrl: 'https://collaboration-tool.vercel.app',
-    githubUrl: 'https://github.com/username/collaboration',
-    role: '기획, 개발, 배포'
-  },
-  {
-    id: 3,
-    title: 'AI 기반 학습 플랫폼',
-    description: '개인화된 학습 경험을 제공하는 AI 플랫폼. 사용자 데이터를 분석하여 맞춤형 콘텐츠를 추천합니다.',
-    tags: ['Next.js', 'Python', 'FastAPI', 'OpenAI'],
-    image: '/images/project3.jpg',
-    liveUrl: 'https://ai-learning.vercel.app',
-    githubUrl: 'https://github.com/username/ai-learning',
-    role: '기획, 개발'
-  }
-]
+import { projects } from '@/lib/data'
 
 export default function ProjectsSummary() {
   return (
@@ -63,7 +31,7 @@ export default function ProjectsSummary() {
 
       {/* 프로젝트 카드들 */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredProjects.map((project, index) => (
+        {projects.map((project, index) => (
           <motion.div
             key={project.id}
             initial={{ opacity: 0, y: 50 }}
@@ -109,18 +77,22 @@ export default function ProjectsSummary() {
 
                 {/* 링크 버튼들 */}
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline" asChild className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                    <Link href={project.liveUrl} target="_blank">
-                      <ExternalLink className="w-3 h-3 mr-1" />
-                      Live
-                    </Link>
-                  </Button>
-                  <Button size="sm" variant="outline" asChild className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                    <Link href={project.githubUrl} target="_blank">
-                      <Github className="w-3 h-3 mr-1" />
-                      Code
-                    </Link>
-                  </Button>
+                  {project.liveUrl && (
+                    <Button size="sm" variant="outline" asChild className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                      <Link href={project.liveUrl} target="_blank">
+                        <ExternalLink className="w-3 h-3 mr-1" />
+                        Live
+                      </Link>
+                    </Button>
+                  )}
+                  {project.githubUrl && (
+                    <Button size="sm" variant="outline" asChild className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                      <Link href={project.githubUrl} target="_blank">
+                        <Github className="w-3 h-3 mr-1" />
+                        Code
+                      </Link>
+                    </Button>
+                  )}
                   <Button size="sm" variant="ghost" asChild className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-700">
                     <Link href={`/portfolio/projects/${project.id}`}>
                       상세보기

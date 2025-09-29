@@ -12,19 +12,9 @@
 // } from 'lucide-react'
 // import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
-// 기술 태그 데이터 - 실제로는 API나 데이터베이스에서 가져올 예정
-const techTags = [
-  { name: 'TypeScript', count: 15, color: 'from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40' },
-  { name: 'React', count: 12, color: 'from-cyan-100 to-cyan-200 dark:from-cyan-900/40 dark:to-cyan-800/40' },
-  { name: 'Next.js', count: 10, color: 'from-gray-100 to-gray-200 dark:from-gray-900/40 dark:to-gray-800/40' },
-  { name: 'TailwindCSS', count: 8, color: 'from-teal-100 to-teal-200 dark:from-teal-900/40 dark:to-teal-800/40' },
-  { name: 'Node.js', count: 6, color: 'from-green-100 to-green-200 dark:from-green-900/40 dark:to-green-800/40' },
-  { name: 'Supabase', count: 4, color: 'from-emerald-100 to-emerald-200 dark:from-emerald-900/40 dark:to-emerald-800/40' },
-  { name: 'Prisma', count: 3, color: 'from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40' },
-  { name: 'Vercel', count: 2, color: 'from-violet-100 to-violet-200 dark:from-violet-900/40 dark:to-violet-800/40' }
-]
+import { techTags as techTagsSource } from '@/lib/data'
 
 export default function NotesCounter() {
   // const [displayCount, setDisplayCount] = useState(0)
@@ -34,52 +24,49 @@ export default function NotesCounter() {
   // 클라이언트 사이드에서만 실행
   useEffect(() => {
     setIsClient(true)
-    
-    // 동적 워드클라우드 배치 함수
+  }, [])
+
+  const sortedTags = useMemo(() => [...techTagsSource].sort((a, b) => b.count - a.count), [])
+
+  useEffect(() => {
+    if (!isClient) return
+
     const generateWordCloudPositions = (tags: { count: number }[]) => {
       const positions: { x: number; y: number }[] = []
       const usedPositions = new Set<string>()
-      
-      // 태그를 개수 순으로 정렬 (큰 것부터)
-      const sortedTags = [...tags].sort((a, b) => b.count - a.count)
-      
-      sortedTags.forEach((tag, index) => {
-        let attempts = 0
+
+      tags.forEach((tag, index) => {
+        let attempt = 0
         let position: { x: number; y: number }
-        
+
         do {
           if (index === 0) {
-            // 첫 번째 태그는 중앙에 배치
             position = { x: 50, y: 50 }
           } else {
-            // 나머지는 중앙에서 원형으로 배치하되, 겹치지 않도록 조정
-            const angle = (index * 360) / sortedTags.length + (Math.random() - 0.5) * 30
-            const radius = 25 + (index * 5) + Math.random() * 10
-            
-            const x = 50 + radius * Math.cos(angle * Math.PI / 180)
-            const y = 50 + radius * Math.sin(angle * Math.PI / 180)
-            
-            position = { 
-              x: Math.max(15, Math.min(85, x)), 
-              y: Math.max(15, Math.min(85, y)) 
+            const angle = (index * 360) / tags.length + (Math.random() - 0.5) * 30
+            const radius = 25 + index * 5 + Math.random() * 10
+
+            const x = 50 + radius * Math.cos((angle * Math.PI) / 180)
+            const y = 50 + radius * Math.sin((angle * Math.PI) / 180)
+
+            position = {
+              x: Math.max(15, Math.min(85, x)),
+              y: Math.max(15, Math.min(85, y)),
             }
           }
-          
-          attempts++
-        } while (usedPositions.has(`${position.x},${position.y}`) && attempts < 50)
-        
+
+          attempt += 1
+        } while (usedPositions.has(`${position.x},${position.y}`) && attempt < 50)
+
         usedPositions.add(`${position.x},${position.y}`)
         positions.push(position)
       })
-      
+
       return positions
     }
 
-    // 태그를 개수 순으로 정렬하고 위치 계산
-    const sortedTags = [...techTags].sort((a, b) => b.count - a.count)
-    const positions = generateWordCloudPositions(sortedTags)
-    setTagPositions(positions)
-  }, [])
+    setTagPositions(generateWordCloudPositions(sortedTags))
+  }, [isClient, sortedTags])
 
   // 총 태그 수 계산
   // const totalTagCount = techTags.reduce((sum, tag) => sum + tag.count, 0)
@@ -114,10 +101,8 @@ export default function NotesCounter() {
         >
           {/* 동적 기술 태그 워드클라우드 */}
           <div className="relative h-full min-h-[500px] flex items-center justify-center overflow-hidden">
-            {isClient && tagPositions.length > 0 && (() => {
-              const sortedTags = [...techTags].sort((a, b) => b.count - a.count)
-              
-              return sortedTags.map((tag, index) => {
+            {isClient && tagPositions.length > 0 && (
+              sortedTags.map((tag, index) => {
                 // 개수에 따른 크기 계산 (최소 0.8, 최대 2.5)
                 const maxCount = Math.max(...sortedTags.map(t => t.count))
                 const minCount = Math.min(...sortedTags.map(t => t.count))
@@ -165,7 +150,7 @@ export default function NotesCounter() {
                   </motion.div>
                 )
               })
-            })()}
+            )}
           </div>
         </motion.div>
       </div>

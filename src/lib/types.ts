@@ -1,5 +1,8 @@
 // 포트폴리오 전용 타입 정의들
 
+export type ExperienceIconName = 'Users' | 'Heart' | 'Trophy' | 'Code2'
+export type KeywordIconName = 'Zap' | 'Target' | 'Users2'
+
 export interface PortfolioConfig {
   name: string
   title: string
@@ -40,7 +43,7 @@ export interface Experience {
   description: string
   impact: string
   skills: string[]
-  icon: React.ComponentType<{ className?: string }> // Lucide icon component
+  iconName: ExperienceIconName
   color: string
 }
 
@@ -55,7 +58,7 @@ export interface Keyword {
   id: number
   keyword: string
   description: string
-  icon: React.ComponentType<{ className?: string }> // Lucide icon component
+  iconName: KeywordIconName
   color: string
   bgGradient: string
 }
@@ -69,6 +72,28 @@ export interface Note {
   tags: string[]
   slug: string
   readTime?: number
+}
+
+export interface WorkflowStep {
+  id: number
+  title: string
+  subtitle: string
+  icon: string
+  color: string
+  description: string
+  details: string[]
+  bgGradient: string
+}
+
+export interface TechTag {
+  name: string
+  count: number
+  color: string
+}
+
+export interface NavigationLink {
+  name: string
+  href: string
 }
 
 // 컴포넌트 Props 타입들

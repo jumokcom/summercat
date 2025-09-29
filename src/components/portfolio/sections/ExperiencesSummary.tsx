@@ -1,89 +1,23 @@
 'use client'
 
-import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { 
-  Users, 
-  Heart, 
-  Trophy, 
-  ArrowRight,
-  Calendar,
-  MapPin,
-  Code2
-} from 'lucide-react'
-import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
-// 임시 데이터 - 나중에 lib/data.ts에서 가져올 예정
-const featuredExperiences = [
-  {
-    id: 1,
-    category: '학생회 활동',
-    title: '컴퓨터공학과 학생회장',
-    organization: '순천향대학교',
-    period: '2023.03 - 2024.02',
-    location: '아산, 충남',
-    description: '학과 행사 기획 및 운영, 학생들의 목소리를 대변하여 학과 발전에 기여했습니다. 프로젝트 관리와 팀 리더십 경험을 쌓았습니다.',
-    impact: '학과 만족도 20% 향상, 15개 행사 성공적 진행',
-    skills: ['리더십', '기획', '소통', '프로젝트 관리'],
-    icon: Users,
-    color: 'text-blue-600 bg-blue-100 dark:bg-blue-950 dark:text-blue-400'
-  },
-  {
-    id: 2,
-    category: '봉사활동',
-    title: '코딩 교육 봉사',
-    organization: '지역아동센터',
-    period: '2022.06 - 2023.12',
-    location: '천안, 충남',
-    description: '초등학생들에게 스크래치 프로그래밍을 가르치며 코딩의 즐거움을 전파했습니다. 복잡한 개념을 쉽게 설명하는 능력을 기를 수 있었습니다.',
-    impact: '30명의 학생들이 기초 프로그래밍 습득',
-    skills: ['교육', '소통', '인내심', '창의적 문제해결'],
-    icon: Heart,
-    color: 'text-red-600 bg-red-100 dark:bg-red-950 dark:text-red-400'
-  },
-  {
-    id: 3,
-    category: '공모전',
-    title: '대학생 창업 경진대회 우수상',
-    organization: '교육부',
-    period: '2023.09',
-    location: '서울',
-    description: '대학생을 위한 스터디 매칭 플랫폼을 기획하고 프로토타입을 개발하여 우수상을 수상했습니다. 팀워크와 창의적 사고를 발휘한 경험입니다.',
-    impact: '전국 200팀 중 상위 10팀 선정',
-    skills: ['창업', '기획', '팀워크', '프레젠테이션'],
-    icon: Trophy,
-    color: 'text-yellow-600 bg-yellow-100 dark:bg-yellow-950 dark:text-yellow-400'
-  },
-  {
-    id: 4,
-    category: '인턴십',
-    title: '프론트엔드 개발 인턴',
-    organization: '테크 스타트업',
-    period: '2024.01 - 2024.06',
-    location: '서울',
-    description: 'React와 TypeScript를 활용한 웹 애플리케이션 개발에 참여했습니다. 실제 서비스에 기여하며 실무 경험을 쌓았습니다.',
-    impact: '3개 기능 개발 완료, 코드 리뷰 프로세스 개선',
-    skills: ['React', 'TypeScript', '실무', '협업', '코드리뷰'],
-    icon: Code2,
-    color: 'text-green-600 bg-green-100 dark:bg-green-950 dark:text-green-400'
-  },
-  {
-    id: 5,
-    category: '해커톤',
-    title: '대학생 해커톤 대상',
-    organization: '한국IT기업협회',
-    period: '2023.11',
-    location: '부산',
-    description: '24시간 해커톤에서 AI를 활용한 스마트 도시 솔루션을 개발했습니다. 창의적 아이디어와 빠른 프로토타이핑으로 대상을 수상했습니다.',
-    impact: '전국 50팀 중 1위, 상금 500만원',
-    skills: ['AI', '프로토타이핑', '창의성', '팀워크', '발표'],
-    icon: Trophy,
-    color: 'text-purple-600 bg-purple-100 dark:bg-purple-950 dark:text-purple-400'
-  }
-]
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import type { LucideIcon } from 'lucide-react'
+import { ArrowRight, Calendar, MapPin, Users, Heart, Trophy, Code2 } from 'lucide-react'
+import Link from 'next/link'
+import { experiences } from '@/lib/data'
+import type { ExperienceIconName } from '@/lib/types'
+
+const experienceIconMap: Record<ExperienceIconName, LucideIcon> = {
+  Users,
+  Heart,
+  Trophy,
+  Code2,
+}
 
 export default function ExperiencesSummary() {
   const [activeIndex, setActiveIndex] = useState(1) // 중간 카드부터 시작
@@ -126,9 +60,9 @@ export default function ExperiencesSummary() {
 
         {/* 카드들 */}
         <AnimatePresence>
-          {featuredExperiences.map((experience, index) => {
-            const IconComponent = experience.icon
-            const totalCards = featuredExperiences.length
+          {experiences.map((experience, index) => {
+            const totalCards = experiences.length
+            const IconComponent = experienceIconMap[experience.iconName]
             
             // 활성 카드로부터의 거리 계산 (순환 고려)
             let distance = (index - activeIndex + totalCards) % totalCards
@@ -237,7 +171,7 @@ export default function ExperiencesSummary() {
                       {/* 1/10: 아이콘 */}
                       <div className="flex items-center justify-center">
                         <div className={`p-3 rounded-lg ${experience.color}`}>
-                          <IconComponent className="h-5 w-5" />
+                          {IconComponent ? <IconComponent className="h-5 w-5" /> : null}
                         </div>
                       </div>
 

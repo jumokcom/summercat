@@ -5,13 +5,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
 
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Notes', href: '/notes' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Experiences', href: '/experiences' },
-  { name: 'About', href: '/about' },
-]
+import { navigationLinks } from '@/lib/data'
 
 export default function PortfolioHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -34,7 +28,7 @@ export default function PortfolioHeader() {
           {/* 데스크톱 네비게이션 */}
           <div className="hidden md:flex items-center space-x-4">
             <nav className="flex items-center space-x-8">
-              {navigation.map((item) => (
+              {navigationLinks.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -66,7 +60,7 @@ export default function PortfolioHeader() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navigation.map((item) => (
+              {navigationLinks.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
